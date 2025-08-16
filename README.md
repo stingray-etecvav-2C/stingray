@@ -30,4 +30,4 @@ JavaScript – Interatividade e lógica do cliente.
 
 PHP/MySQL – Caso o projeto tenha backend para gerenciamento de produtos e pedidos.
 
-<p>Desenvolvido pelos alunos Aladar Pinoti, Daniel Lopes, Guilherme Rodrigues e Gustavo Antonio.</p>
+<p color:purple>Desenvolvido pelos alunos Aladar Pinoti, Daniel Lopes, Guilherme Rodrigues e Gustavo Antonio.</p>
