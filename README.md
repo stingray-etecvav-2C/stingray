@@ -30,7 +30,8 @@ JavaScript – Interatividade e lógica do cliente.
 
 PHP/MySQL – Caso o projeto tenha backend para gerenciamento de produtos e pedidos.
 
-<p style="color: (128, 0, 128);">
+<p style="color: #800080;">
   Desenvolvido pelos alunos Aladar Pinoti, Daniel Lopes, Guilherme Rodrigues e Gustavo Antonio.
 </p>
+
 
