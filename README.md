@@ -29,9 +29,8 @@ CSS3 (e Bootstrap) – Estilização e responsividade.
 JavaScript – Interatividade e lógica do cliente.
 
 PHP/MySQL – Caso o projeto tenha backend para gerenciamento de produtos e pedidos.
-
-<p style="color: #800080;">
-  Desenvolvido pelos alunos Aladar Pinoti, Daniel Lopes, Guilherme Rodrigues e Gustavo Antonio.
+<p>
+  <b>Desenvolvido pelos alunos Aladar Pinoti, Daniel Lopes, Guilherme Rodrigues e Gustavo Antonio.</b>
 </p>
 
 
