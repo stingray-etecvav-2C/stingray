@@ -258,3 +258,51 @@
         width: auto;
         }
         
+   .auth-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .auth-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .auth-logo img {
+            max-width: 150px;
+        }
+        /* Estilo personalizado para o dropdown preto */
+    .dropdown-menu-dark {
+        background-color: #000;
+        border: 1px solid #444;
+    }
+    
+    .dropdown-menu-dark .dropdown-item {
+        color: #fff;
+    }
+    
+    .dropdown-menu-dark .dropdown-item:hover,
+    .dropdown-menu-dark .dropdown-item:focus {
+        background-color: #333;
+        color: #fff;
+    }
+    
+    .dropdown-menu-dark .dropdown-divider {
+        border-top: 1px solid #444;
+    }
+          .password-requirements {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        .requirement {
+            margin-bottom: 3px;
+        }
+        .requirement.met {
+            color: #28a745;
+        }
+        .requirement.unmet {
+            color: #dc3545;
+        }
