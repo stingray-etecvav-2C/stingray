@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Configurações do banco de dados
 $host = 'localhost';
 $dbname = 'stingray';
@@ -46,7 +48,19 @@ try {
 } catch (PDOException $e) {
     die("Erro na conexão com o banco de dados: " . $e->getMessage());
 }
+
+$stmt = $pdo->prepare("
+    SELECT COUNT(*) as total_itens 
+    FROM carrinho_itens ci 
+    JOIN carrinhos c ON ci.carrinho_id = c.id 
+    WHERE c.usuario_id = ? AND c.status = 'aberto'
+");
+$stmt->execute([$_SESSION['usuario_id']]);
+$carrinho_info = $stmt->fetch(PDO::FETCH_ASSOC);
+$total_itens = $carrinho_info['total_itens'] ?? 0;
+
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -55,10 +69,9 @@ try {
     <title>Stingray Tech - Produtos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    
 </head>
 <body>
-    <!-- Navbar -->
+    <!-- Navbar atualizada -->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -78,6 +91,32 @@ try {
                     <li class="nav-item">
                         <a class="btn btn-outline-light" href="#crdt">Créditos</a>
                     </li>
+                    <li>
+                        <a class="btn btn-outline-light" href="ver_carrinho.php"> Carrinho (<?= $total_itens ?>)</a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav ms-auto">
+                    <?php if (isset($_SESSION['usuario_id'])): ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Olá, <?= htmlspecialchars($_SESSION['usuario_nome']) ?>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="#">Minha Conta</a></li>
+                            <li><a class="dropdown-item" href="meus_pedidos.php">Meus Pedidos</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="logout.php">Sair</a></li>
+                        </ul>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light me-2" href="login.php">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="registro.php">Criar Conta</a>
+                    </li>
+                <?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -144,7 +183,11 @@ try {
                         <div class="category"><?= htmlspecialchars($produto['categoria']) ?></div>
                         <div class="brand"><?= htmlspecialchars($produto['marca']) ?></div>
                         <div class="price">R$ <?= number_format($produto['preco'], 2, ',', '.') ?></div>
-                        <button>Adicionar ao carrinho</button>
+                        
+                        <form method="GET" action="ver_carrinho.php">
+                        <input type="hidden" name="adicionar" value="<?= $produto['id_produto'] ?>">
+                        <button type="submit" class="btn btn-primary mt-2">Adicionar ao Carrinho</button>
+                        </form>
                     </div>
                     <?php endforeach; ?>
                 <?php else: ?>
@@ -160,7 +203,7 @@ try {
       <div class="container px-4 px-lg-6" id="contato">
         <div class="row gx-0 justify-content-center mb-5">
           <div class="col-lg-6 col-md-12 mb-4">  
-              <img class="img-fluid" src="midIas/logoStingray2.png"/>
+              <img class="img-fluid" src="midias/logoStingray2.png"/>
           </div>
           <div class="col-lg-6 col-md-12">
             <div class="bg-black text-center h-100 project" >
@@ -176,8 +219,6 @@ try {
                     
                     Visualizem detalhes dos produtos
                     Adicionem itens ao carrinho de compras
-
-
                   </p>
                 </div>
               </div>
