@@ -1,0 +1,184 @@
+/* ====== Body e cores ====== */
+body {
+    background-color: #1A0B2E;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+}
+
+/* ====== Sidebar ====== */
+.sidebar {
+    background-color: #161320;
+    padding: 20px;
+    border-radius: 10px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+.sidebar .top-logo {
+    display: block;
+    width: 150px;     
+    height: auto;
+    margin: 0 auto 20px; 
+}
+
+.sidebar h4 {
+    color: #5e00da;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.sidebar p {
+    font-size: 0.9em;
+    margin-bottom: 20px;
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+}
+
+.sidebar a.active, .sidebar a:hover {
+    background-color: #343a40;
+    color: #5e00da;
+    transform: translateX(5px);
+}
+
+/* ====== Cards indicadores ====== */
+.card-indicador {
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(157,108,255,0.3);
+    transition: transform 0.3s;
+    background-color: #2B1A4B;
+    color: #fff;
+}
+
+.card-indicador:hover {
+    transform: translateY(-5px);
+}
+
+.card-indicador h5 {
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.card-indicador h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* ====== Botões ====== */
+.btn-opcao {
+    min-width: 120px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-opcao:hover {
+    transform: translateY(-3px);
+}
+
+/* Botão salvar (fundo branco, texto roxo) */
+.btn-salvar {
+    background-color: #ffffff !important;
+    color: #5B2B9A !important;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
+
+.btn-salvar:hover {
+    background-color: #f0f0f0 !important;
+    color: #3d1a6e !important;
+}
+
+/* Botão cancelar (fundo roxo, texto branco) */
+.btn-cancelar {
+    background-color: #5B2B9A !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn-cancelar:hover {
+    background-color: #3d1a6e !important;
+}
+
+/* ====== Main container ====== */
+.main-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ====== Tabela ====== */
+.table-responsive {
+    background-color: #2B1A4B !important;
+    border-radius: 10px !important;
+    padding: 10px !important;
+    overflow-x: auto !important;
+}
+
+table {
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    color: #FFFFFF !important;
+}
+
+th {
+    background-color: #5B2B9A !important;
+    color: #FFFFFF !important;
+    padding: 12px !important;
+    text-align: left !important;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+td {
+    padding: 12px !important;
+    border-bottom: 1px solid #444 !important;
+}
+
+tr:hover {
+    background-color: #9D6CFF !important;
+    color: #000 !important;
+}
+
+.status-aberto {
+    color: #f39c12 !important; /* laranja */
+    font-weight: bold !important;
+}
+
+.status-finalizado {
+    color: #27ae60 !important; /* verde */
+    font-weight: bold !important;
+}
+
+/* ====== Responsivo ====== */
+@media(max-width:992px){
+    .main-container {flex-direction: column;}
+    .sidebar {height:auto; position:relative; top:0;}
+}
