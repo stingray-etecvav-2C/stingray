@@ -112,7 +112,7 @@ Desenvolver um **sistema web para gerenciamento de funcionários e estoque**, co
 - Guilherme Rodrigues  
 - Gustavo Antonio  
 
-##Imagens 
+## Imagens 
 
 <img width="1901" height="996" alt="487053106-65751716-11ff-466f-9c56-1d0eff135b76" src="https://github.com/user-attachments/assets/9606c140-934d-4dca-bf05-a8e0bb8bc24f" />
 
