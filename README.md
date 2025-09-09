@@ -1,3 +1,8 @@
+# Stingray  
+
+Stingray é um projeto acadêmico de **e-commerce especializado na venda de acessórios e periféricos para computadores**.  
+O objetivo é desenvolver uma plataforma completa, responsiva e intuitiva, que permita ao usuário **navegar, pesquisar, comparar e comprar produtos** de forma simples e segura.  
+
 ## Imagens 
 
 <img width="1901" height="996" alt="487053106-65751716-11ff-466f-9c56-1d0eff135b76" src="https://github.com/user-attachments/assets/9606c140-934d-4dca-bf05-a8e0bb8bc24f" />
@@ -13,11 +18,6 @@
 <img width="1919" height="1002" alt="487053111-d9002080-6ed4-49fe-b6cc-fb3c1ea4ef74" src="https://github.com/user-attachments/assets/1c7535ca-28a2-49ff-839f-85a5d6650572" />
 
 **Contato:** guilhermefilho095@gmail.com  
-
-# Stingray  
-
-Stingray é um projeto acadêmico de **e-commerce especializado na venda de acessórios e periféricos para computadores**.  
-O objetivo é desenvolver uma plataforma completa, responsiva e intuitiva, que permita ao usuário **navegar, pesquisar, comparar e comprar produtos** de forma simples e segura.  
 
 ## Descrição  
 O projeto Stingray foi desenvolvido como parte de um trabalho acadêmico, aplicando conceitos de **desenvolvimento web, design responsivo, boas práticas de programação e usabilidade**.  
