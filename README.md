@@ -114,12 +114,17 @@ Desenvolver um **sistema web para gerenciamento de funcionários e estoque**, co
 
 ##Imagens 
 
-##<img width="1901" height="996" alt="487053106-65751716-11ff-466f-9c56-1d0eff135b76" src="https://github.com/user-attachments/assets/9606c140-934d-4dca-bf05-a8e0bb8bc24f" />
-##<img width="1919" height="1002" alt="487053105-ef0bad1c-c636-4bed-bcc1-db19e786f370" src="https://github.com/user-attachments/assets/639beca8-e5c0-4042-882b-f29a78765c74" />
-##<img width="1919" height="1005" alt="487053108-f26f8bf3-2af6-4e9a-80cb-3228b00e5ae8" src="https://github.com/user-attachments/assets/91d3ccbe-5739-4f2b-a9c3-fcd2948911a8" />
-##<img width="1919" height="999" alt="487053107-deaf7bb4-d42b-4458-97e5-42a1e866af5c" src="https://github.com/user-attachments/assets/319aa012-7a63-45dc-a926-2fd3b0cadcd5" />
-##<img width="1919" height="995" alt="487053110-88735e7b-57c1-414c-89c9-701d1c58db11" src="https://github.com/user-attachments/assets/1bc71d8c-b186-455b-a97e-a3bc9fa3fd82" />
-##<img width="1919" height="1002" alt="487053111-d9002080-6ed4-49fe-b6cc-fb3c1ea4ef74" src="https://github.com/user-attachments/assets/1c7535ca-28a2-49ff-839f-85a5d6650572" />
+<img width="1901" height="996" alt="487053106-65751716-11ff-466f-9c56-1d0eff135b76" src="https://github.com/user-attachments/assets/9606c140-934d-4dca-bf05-a8e0bb8bc24f" />
+
+<img width="1919" height="1002" alt="487053105-ef0bad1c-c636-4bed-bcc1-db19e786f370" src="https://github.com/user-attachments/assets/639beca8-e5c0-4042-882b-f29a78765c74" />
+
+<img width="1919" height="1005" alt="487053108-f26f8bf3-2af6-4e9a-80cb-3228b00e5ae8" src="https://github.com/user-attachments/assets/91d3ccbe-5739-4f2b-a9c3-fcd2948911a8" />
+
+<img width="1919" height="999" alt="487053107-deaf7bb4-d42b-4458-97e5-42a1e866af5c" src="https://github.com/user-attachments/assets/319aa012-7a63-45dc-a926-2fd3b0cadcd5" />
+
+<img width="1919" height="995" alt="487053110-88735e7b-57c1-414c-89c9-701d1c58db11" src="https://github.com/user-attachments/assets/1bc71d8c-b186-455b-a97e-a3bc9fa3fd82" />
+
+<img width="1919" height="1002" alt="487053111-d9002080-6ed4-49fe-b6cc-fb3c1ea4ef74" src="https://github.com/user-attachments/assets/1c7535ca-28a2-49ff-839f-85a5d6650572" />
 
 **Contato:** guilhermefilho095@gmail.com  
   
