@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'gestao/conexao.php'; // arquivo com $conn (mysqli)
+require 'gestao/conexao.php'; // arquivo com $pdo (PDO)
 
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
@@ -11,15 +11,14 @@ $usuario_id = $_SESSION['usuario_id'];
 $erro = '';
 $sucesso = '';
 
-$conn->begin_transaction();
-
 try {
+    $pdo->beginTransaction();
+
     // Buscar o carrinho aberto do usuário
-    $sqlCarrinho = "SELECT * FROM carrinhos WHERE usuario_id = ? AND status = 'aberto' LIMIT 1";
-    $stmt = $conn->prepare($sqlCarrinho);
-    $stmt->bind_param("i", $usuario_id);
-    $stmt->execute();
-    $carrinho = $stmt->get_result()->fetch_assoc();
+    $sqlCarrinho = "SELECT * FROM carrinhos WHERE usuario_id = :usuario_id AND status = 'aberto' LIMIT 1";
+    $stmt = $pdo->prepare($sqlCarrinho);
+    $stmt->execute([':usuario_id' => $usuario_id]);
+    $carrinho = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$carrinho) {
         throw new Exception("Você não possui carrinhos abertos.");
@@ -31,56 +30,64 @@ try {
     $sqlItens = "SELECT ci.id, ci.produto_id, ci.quantidade, p.nome_produto, p.preco, p.quantidade_estoque
                  FROM carrinho_itens ci
                  JOIN produtos p ON ci.produto_id = p.id_produto
-                 WHERE ci.carrinho_id = ?";
-    $stmtItens = $conn->prepare($sqlItens);
-    $stmtItens->bind_param("i", $carrinho_id);
-    $stmtItens->execute();
-    $resultado = $stmtItens->get_result();
-    $itens = $resultado->fetch_all(MYSQLI_ASSOC);
+                 WHERE ci.carrinho_id = :carrinho_id";
+    $stmtItens = $pdo->prepare($sqlItens);
+    $stmtItens->execute([':carrinho_id' => $carrinho_id]);
+    $itens = $stmtItens->fetchAll(PDO::FETCH_ASSOC);
 
     if (empty($itens)) {
         throw new Exception("Seu carrinho está vazio.");
     }
 
-    // Inserir pedido na tabela pedidos (crie se não existir)
-    $sqlPedido = "INSERT INTO pedidos (usuario_id, total, status, created_at) VALUES (?, ?, 'finalizado', NOW())";
+    // Inserir pedido
+    $sqlPedido = "INSERT INTO pedidos (usuario_id, total, status, created_at) VALUES (:usuario_id, :total, 'finalizado', NOW())";
     $total = 0;
     foreach ($itens as $item) {
         $total += $item['preco'] * $item['quantidade'];
     }
-    $stmtPedido = $conn->prepare($sqlPedido);
-    $stmtPedido->bind_param("id", $usuario_id, $total);
-    $stmtPedido->execute();
-    $pedido_id = $stmtPedido->insert_id;
+
+    $stmtPedido = $pdo->prepare($sqlPedido);
+    $stmtPedido->execute([
+        ':usuario_id' => $usuario_id,
+        ':total' => $total
+    ]);
+    $pedido_id = $pdo->lastInsertId();
 
     // Inserir itens do pedido e atualizar estoque
-    $sqlInserirItem = "INSERT INTO pedido_itens (pedido_id, produto_id, quantidade, preco) VALUES (?, ?, ?, ?)";
-    $sqlAtualizaEstoque = "UPDATE produtos SET quantidade_estoque = quantidade_estoque - ? WHERE id_produto = ?";
+    $sqlInserirItem = "INSERT INTO pedido_itens (pedido_id, produto_id, quantidade, preco) 
+                       VALUES (:pedido_id, :produto_id, :quantidade, :preco)";
+    $sqlAtualizaEstoque = "UPDATE produtos SET quantidade_estoque = quantidade_estoque - :quantidade 
+                           WHERE id_produto = :produto_id";
 
-    $stmtItem = $conn->prepare($sqlInserirItem);
-    $stmtEstoque = $conn->prepare($sqlAtualizaEstoque);
+    $stmtItem = $pdo->prepare($sqlInserirItem);
+    $stmtEstoque = $pdo->prepare($sqlAtualizaEstoque);
 
     foreach ($itens as $item) {
         if ($item['quantidade'] > $item['quantidade_estoque']) {
             throw new Exception("Estoque insuficiente para o produto: {$item['nome_produto']}");
         }
 
-        $stmtItem->bind_param("iiid", $pedido_id, $item['produto_id'], $item['quantidade'], $item['preco']);
-        $stmtItem->execute();
+        $stmtItem->execute([
+            ':pedido_id' => $pedido_id,
+            ':produto_id' => $item['produto_id'],
+            ':quantidade' => $item['quantidade'],
+            ':preco' => $item['preco']
+        ]);
 
-        $stmtEstoque->bind_param("ii", $item['quantidade'], $item['produto_id']);
-        $stmtEstoque->execute();
+        $stmtEstoque->execute([
+            ':quantidade' => $item['quantidade'],
+            ':produto_id' => $item['produto_id']
+        ]);
     }
 
     // Marcar carrinho como finalizado
-    $stmtStatus = $conn->prepare("UPDATE carrinhos SET status = 'finalizado' WHERE id = ?");
-    $stmtStatus->bind_param("i", $carrinho_id);
-    $stmtStatus->execute();
+    $stmtStatus = $pdo->prepare("UPDATE carrinhos SET status = 'finalizado' WHERE id = :carrinho_id");
+    $stmtStatus->execute([':carrinho_id' => $carrinho_id]);
 
-    $conn->commit();
+    $pdo->commit();
     $sucesso = "Pedido finalizado com sucesso! Total: R$ " . number_format($total, 2, ",", ".");
 } catch (Exception $e) {
-    $conn->rollback();
+    $pdo->rollBack();
     $erro = "Erro ao finalizar pedido: " . $e->getMessage();
 }
 ?>
